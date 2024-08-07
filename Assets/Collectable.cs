@@ -4,6 +4,11 @@ public class Collectable : MonoBehaviour
 {
     public string Name;
     public Color color;
+
+    void Start() 
+    {
+        gameObject.name = Name;
+    }
  
     void OnTriggerEnter(Collider c)
     {

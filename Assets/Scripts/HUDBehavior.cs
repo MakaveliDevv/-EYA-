@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class HUDBehavior : MonoBehaviour
 {
     public string ColorName;
-    private Collectable c;
+    public Collectable c;
     public GameObject bg;
     public Button btn;
     public bool locked = true;
@@ -20,15 +20,21 @@ public class HUDBehavior : MonoBehaviour
         instances.Add(this);
     }    
     
+    void OnDestroy()
+    {
+        instances.Remove(this);
+    }
+
     void Update()
     {
-        if(GameManager.GetInstance().colors.Count > 0)
+        if(locked && GameManager.GetInstance().colors.Count > 0)
         {
-            foreach (var item in GameManager.GetInstance().colors)
+            foreach (var color in GameManager.GetInstance().colors)
             {
-                c = item.GetComponent<Collectable>();
-                if(c.Name == ColorName)
+                Collectable collectable = color.GetComponent<Collectable>();
+                if(collectable.Name == ColorName)
                 {
+                    c = collectable;
                     btn.gameObject.SetActive(true);
                     bg.SetActive(false);
                     locked = false;
@@ -44,27 +50,34 @@ public class HUDBehavior : MonoBehaviour
         {
             if(HUD != this) 
                 HUD.selected = false;
-            
-        }
+
         
-        selected = true;
-        SplatGun.GetInstance().colors.Clear();
-        SplatGun.GetInstance().colors.Add(c.color);
-
-        SplatGun.GetInstance().p_Controller.paintColor = c.color;
-
-        if(SplatGun.GetInstance().mainVisualParticle.TryGetComponent<ParticleSystemRenderer>(out var p_Renderer)) 
-        {
-            Material p_Material = p_Renderer.sharedMaterial;
-
-            if(p_Material.HasProperty("_BaseColor"))
+            if(c != null && c.Name == ColorName) 
             {
-                p_Material.SetColor("_BaseColor", c.color);
+                // Clear the previous color
+                SplatGun.GetInstance().colors.Clear();
+                
+                // Add new color
+                SplatGun.GetInstance().colors.Add(c.color);
+
+                // Set the particle material color to the color of the collected color
+                SplatGun.GetInstance().p_Controller.paintColor = c.color;
+                selected = true;
+
+                if(SplatGun.GetInstance().mainVisualParticle.TryGetComponent<ParticleSystemRenderer>(out var p_Renderer)) 
+                {
+                    Material p_Material = p_Renderer.sharedMaterial;
+
+                    if(p_Material.HasProperty("_BaseColor"))
+                    {
+                        p_Material.SetColor("_BaseColor", c.color);
+                    }
+                    else 
+                    {
+                        p_Material.color = SplatGun.GetInstance().p_Controller.paintColor;
+                    }
+                }
             }
-            else 
-            {
-                p_Material.color = SplatGun.GetInstance().p_Controller.paintColor;
-            }
-        }
+        }   
     }
 }

@@ -1,9 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Paintable : MonoBehaviour {
     const int TEXTURE_SIZE = 1024;
 
     public float extendsIslandOffset = 1;
+    public List<Color> allowedColors; // Add this line to store allowed colors
 
     RenderTexture extendIslandsRenderTexture;
     RenderTexture uvIslandsRenderTexture;

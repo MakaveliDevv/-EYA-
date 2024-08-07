@@ -29,7 +29,12 @@ public class ParticlesController: MonoBehaviour{
             for  (int i = 0; i< numCollisionEvents; i++){
                 Vector3 pos = collisionEvents[i].intersection;
                 float radius = Random.Range(minRadius, maxRadius);
-                PaintManager.instance.Paint(p, pos, radius, hardness, strength, paintColor);
+
+                // Check if the current paint color is allowed
+                if(p.allowedColors.Contains(paintColor)){
+                    PaintManager.GetInstance().Paint(p, pos, radius, hardness, strength, paintColor);
+                }
+                // PaintManager.instance.Paint(p, pos, radius, hardness, strength, paintColor);
             }
         }
     }
