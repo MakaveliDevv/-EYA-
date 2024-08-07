@@ -24,17 +24,20 @@ public class ParticlesController: MonoBehaviour{
     void OnParticleCollision(GameObject other) {
         int numCollisionEvents = part.GetCollisionEvents(other, collisionEvents);
 
-        Paintable p = other.GetComponent<Paintable>();
-        if(p != null){
+        if(other.TryGetComponent<Paintable>(out var p))
+        {
             for  (int i = 0; i< numCollisionEvents; i++){
                 Vector3 pos = collisionEvents[i].intersection;
                 float radius = Random.Range(minRadius, maxRadius);
 
                 // Check if the current paint color is allowed
                 if(p.allowedColors.Contains(paintColor)){
-                    PaintManager.GetInstance().Paint(p, pos, radius, hardness, strength, paintColor);
+                    //PaintManager.GetInstance().Paint(p, pos, radius, hardness, strength, paintColor);
+                    PaintManager.instance.Paint(p, pos, radius, hardness, strength, paintColor);
                 }
-                // PaintManager.instance.Paint(p, pos, radius, hardness, strength, paintColor);
+                else {
+                    Debug.Log("Not allowed");
+                }
             }
         }
     }
