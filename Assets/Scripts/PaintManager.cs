@@ -1,8 +1,9 @@
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class PaintManager : Singleton<PaintManager>{
-
+public class PaintManager : Singleton<PaintManager>
+{
+    private static PaintManager i;
     public Shader texturePaint;
     public Shader extendIslands;
 
@@ -27,11 +28,13 @@ public class PaintManager : Singleton<PaintManager>{
         
         paintMaterial = new Material(texturePaint);
         extendMaterial = new Material(extendIslands);
-        command = new CommandBuffer();
-        command.name = "CommmandBuffer - " + gameObject.name;
+        command = new CommandBuffer
+        {
+            name = "CommmandBuffer - " + gameObject.name
+        };
     }
 
-    public void initTextures(Paintable paintable){
+    public void InitTextures(Paintable paintable){
         RenderTexture mask = paintable.getMask();
         RenderTexture uvIslands = paintable.getUVIslands();
         RenderTexture extend = paintable.getExtend();
@@ -51,7 +54,7 @@ public class PaintManager : Singleton<PaintManager>{
     }
 
 
-    public void paint(Paintable paintable, Vector3 pos, float radius = 1f, float hardness = .5f, float strength = .5f, Color? color = null){
+    public void Paint(Paintable paintable, Vector3 pos, float radius = 1f, float hardness = .5f, float strength = .5f, Color? color = null){
         RenderTexture mask = paintable.getMask();
         RenderTexture uvIslands = paintable.getUVIslands();
         RenderTexture extend = paintable.getExtend();
@@ -79,6 +82,11 @@ public class PaintManager : Singleton<PaintManager>{
 
         Graphics.ExecuteCommandBuffer(command);
         command.Clear();
+    }
+
+    public static PaintManager GetInstance() 
+    {
+        return i;
     }
 
 }

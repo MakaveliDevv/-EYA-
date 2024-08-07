@@ -19,14 +19,15 @@ public class MousePainter : MonoBehaviour{
         if (click){
             Vector3 position = Input.mousePosition;
             Ray ray = cam.ScreenPointToRay(position);
-            RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, 100.0f)){
+            if (Physics.Raycast(ray, out RaycastHit hit, 100.0f))
+            {
                 Debug.DrawRay(ray.origin, hit.point - ray.origin, Color.red);
                 transform.position = hit.point;
                 Paintable p = hit.collider.GetComponent<Paintable>();
-                if(p != null){
-                    PaintManager.instance.paint(p, hit.point, radius, hardness, strength, paintColor);
+                if (p != null)
+                {
+                    PaintManager.instance.Paint(p, hit.point, radius, hardness, strength, paintColor);
                 }
             }
         }

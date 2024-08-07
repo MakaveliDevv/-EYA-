@@ -21,22 +21,30 @@ public class Paintable : MonoBehaviour {
     public Renderer getRenderer() => rend;
 
     void Start() {
-        maskRenderTexture = new RenderTexture(TEXTURE_SIZE, TEXTURE_SIZE, 0);
-        maskRenderTexture.filterMode = FilterMode.Bilinear;
+        maskRenderTexture = new RenderTexture(TEXTURE_SIZE, TEXTURE_SIZE, 0)
+        {
+            filterMode = FilterMode.Bilinear
+        };
 
-        extendIslandsRenderTexture = new RenderTexture(TEXTURE_SIZE, TEXTURE_SIZE, 0);
-        extendIslandsRenderTexture.filterMode = FilterMode.Bilinear;
+        extendIslandsRenderTexture = new RenderTexture(TEXTURE_SIZE, TEXTURE_SIZE, 0)
+        {
+            filterMode = FilterMode.Bilinear
+        };
 
-        uvIslandsRenderTexture = new RenderTexture(TEXTURE_SIZE, TEXTURE_SIZE, 0);
-        uvIslandsRenderTexture.filterMode = FilterMode.Bilinear;
+        uvIslandsRenderTexture = new RenderTexture(TEXTURE_SIZE, TEXTURE_SIZE, 0)
+        {
+            filterMode = FilterMode.Bilinear
+        };
 
-        supportTexture = new RenderTexture(TEXTURE_SIZE, TEXTURE_SIZE, 0);
-        supportTexture.filterMode =  FilterMode.Bilinear;
+        supportTexture = new RenderTexture(TEXTURE_SIZE, TEXTURE_SIZE, 0)
+        {
+            filterMode = FilterMode.Bilinear
+        };
 
         rend = GetComponent<Renderer>();
         rend.material.SetTexture(maskTextureID, extendIslandsRenderTexture);
 
-        PaintManager.instance.initTextures(this);
+        PaintManager.instance.InitTextures(this);
     }
 
     void OnDisable(){
