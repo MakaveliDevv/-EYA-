@@ -41,6 +41,25 @@ public class HUDBehavior : MonoBehaviour
                 }
             }
         }
+
+        if(selected) 
+        {
+            ColorBlock cb = btn.colors;
+            Color n_Color = cb.normalColor;
+
+            n_Color.a = 1f;
+            cb.normalColor = n_Color;
+            btn.colors = cb;
+        }
+        else 
+        {
+            ColorBlock cb = btn.colors;
+            Color n_Color = cb.normalColor;
+
+            n_Color.a = .25f;
+            cb.normalColor = n_Color;
+            btn.colors = cb;
+        }
     }
 
     public void Selected() 
