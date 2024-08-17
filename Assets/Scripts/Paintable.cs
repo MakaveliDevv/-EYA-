@@ -13,6 +13,7 @@ public class Paintable : MonoBehaviour {
     public float strength = 1;
     public float hardness = 1;
     public float tolerance = 0.01f;
+    public bool restrictedColors;
 
     public float extendsIslandOffset = 1;
     public List<Color> allowedColors; // Add this line to store allowed colors

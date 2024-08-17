@@ -117,20 +117,26 @@ public class ParticlesController : MonoBehaviour
             Paintable paintable = paintables[i];
             float radius = Random.Range(paintable.minRadius, paintable.maxRadius);
 
-            // Check if the current paint color is allowed
-            if (paintable.allowedColors.Any(allowedColor => AreColorsSimilar(allowedColor, paintColor)))
+            if(paintable.restrictedColors) 
+            {
+                // Check if the current paint color is allowed
+                if (paintable.allowedColors.Any(allowedColor => AreColorsSimilar(allowedColor, paintColor)))
+                {
+                    PaintManager.instance.Paint(paintable, pos, radius, paintable.hardness, paintable.strength, paintColor);
+
+                    // Check if fully painted
+                    if (paintable.IsFullyPainted())
+                    {
+                        Debug.Log("The paintable object is fully painted.");
+                    }
+                }
+                else
+                {
+                    Debug.Log("Color not allowed");
+                }
+            } else 
             {
                 PaintManager.instance.Paint(paintable, pos, radius, paintable.hardness, paintable.strength, paintColor);
-
-                // Check if fully painted
-                if (paintable.IsFullyPainted())
-                {
-                    Debug.Log("The paintable object is fully painted.");
-                }
-            }
-            else
-            {
-                Debug.Log("Color not allowed");
             }
         }
 
