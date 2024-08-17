@@ -1,0 +1,158 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3321902542690958114
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 13490641994938947}
+  m_Layer: 0
+  m_Name: Lantern_grass_yellow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &13490641994938947
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3321902542690958114}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -21.38, y: -12.8029995, z: -113.44}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5936780632091966263}
+  - {fileID: 6509714805010012322}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &7209012536846666157
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 13490641994938947}
+    m_Modifications:
+    - target: {fileID: 3920418878459998874, guid: 305f5d0c8d47169498803157b0dc8dec, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920418878459998874, guid: 305f5d0c8d47169498803157b0dc8dec, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.5546036
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920418878459998874, guid: 305f5d0c8d47169498803157b0dc8dec, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.8303404
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920418878459998874, guid: 305f5d0c8d47169498803157b0dc8dec, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.4708786
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920418878459998874, guid: 305f5d0c8d47169498803157b0dc8dec, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920418878459998874, guid: 305f5d0c8d47169498803157b0dc8dec, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920418878459998874, guid: 305f5d0c8d47169498803157b0dc8dec, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920418878459998874, guid: 305f5d0c8d47169498803157b0dc8dec, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920418878459998874, guid: 305f5d0c8d47169498803157b0dc8dec, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920418878459998874, guid: 305f5d0c8d47169498803157b0dc8dec, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920418878459998874, guid: 305f5d0c8d47169498803157b0dc8dec, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4405629423100340256, guid: 305f5d0c8d47169498803157b0dc8dec, type: 3}
+      propertyPath: m_Name
+      value: LanternGrass_yellow
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 305f5d0c8d47169498803157b0dc8dec, type: 3}
+--- !u!4 &5936780632091966263 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3920418878459998874, guid: 305f5d0c8d47169498803157b0dc8dec, type: 3}
+  m_PrefabInstance: {fileID: 7209012536846666157}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7527643093365905929
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 13490641994938947}
+    m_Modifications:
+    - target: {fileID: 3612072317343384235, guid: 6ff3172aa4ac06d4fbd488d2dba18c9c, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3612072317343384235, guid: 6ff3172aa4ac06d4fbd488d2dba18c9c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.396
+      objectReference: {fileID: 0}
+    - target: {fileID: 3612072317343384235, guid: 6ff3172aa4ac06d4fbd488d2dba18c9c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.8303404
+      objectReference: {fileID: 0}
+    - target: {fileID: 3612072317343384235, guid: 6ff3172aa4ac06d4fbd488d2dba18c9c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 3612072317343384235, guid: 6ff3172aa4ac06d4fbd488d2dba18c9c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.54510945
+      objectReference: {fileID: 0}
+    - target: {fileID: 3612072317343384235, guid: 6ff3172aa4ac06d4fbd488d2dba18c9c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3612072317343384235, guid: 6ff3172aa4ac06d4fbd488d2dba18c9c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.83836496
+      objectReference: {fileID: 0}
+    - target: {fileID: 3612072317343384235, guid: 6ff3172aa4ac06d4fbd488d2dba18c9c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3612072317343384235, guid: 6ff3172aa4ac06d4fbd488d2dba18c9c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3612072317343384235, guid: 6ff3172aa4ac06d4fbd488d2dba18c9c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -113.936
+      objectReference: {fileID: 0}
+    - target: {fileID: 3612072317343384235, guid: 6ff3172aa4ac06d4fbd488d2dba18c9c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4137532684345153553, guid: 6ff3172aa4ac06d4fbd488d2dba18c9c, type: 3}
+      propertyPath: m_Name
+      value: LanternGrass_yellow_rot
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6ff3172aa4ac06d4fbd488d2dba18c9c, type: 3}
+--- !u!4 &6509714805010012322 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3612072317343384235, guid: 6ff3172aa4ac06d4fbd488d2dba18c9c, type: 3}
+  m_PrefabInstance: {fileID: 7527643093365905929}
+  m_PrefabAsset: {fileID: 0}
