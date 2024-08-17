@@ -13,7 +13,7 @@ public class HUDBehavior : MonoBehaviour
     public bool selected = false;
 
     // Static list to hold reference to all HUDBehaviour instances
-    private static List<HUDBehavior> instances = new List<HUDBehavior>();
+    private static readonly List<HUDBehavior> instances = new();
 
     void Awake()
     {
@@ -35,7 +35,7 @@ public class HUDBehavior : MonoBehaviour
                 if(collectable.Name == ColorName)
                 {
                     c = collectable;
-                    btn.gameObject.SetActive(true);
+                    // btn.gameObject.SetActive(true);
                     bg.SetActive(false);
                     locked = false;
                 }

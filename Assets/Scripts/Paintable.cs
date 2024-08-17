@@ -4,6 +4,7 @@ using UnityEngine;
 public class Paintable : MonoBehaviour {
     const int TEXTURE_SIZE = 1024;
     public float coverageThreshold = 0.75f; // 99% coverage for "fully painted"
+    public float coverage;
     public int checkFrequency = 10; // Check every 10th collision event
     
 
@@ -14,6 +15,9 @@ public class Paintable : MonoBehaviour {
     public float hardness = 1;
     public float tolerance = 0.01f;
     public bool restrictedColors;
+    public bool onPath;
+    public bool yellow_lantern, red_lantern, isLantern;
+
 
     public float extendsIslandOffset = 1;
     public List<Color> allowedColors; // Add this line to store allowed colors
@@ -59,6 +63,8 @@ public class Paintable : MonoBehaviour {
         rend.material.SetTexture(maskTextureID, extendIslandsRenderTexture);
 
         PaintManager.instance.InitTextures(this);
+
+        // GetComponent<MeshCollider>().isTrigger = true;
     }
 
     void OnDisable(){
@@ -85,7 +91,7 @@ public class Paintable : MonoBehaviour {
         RenderTexture.active = null;
 
         // Sample every nth pixel to reduce processing load
-        int sampleStep = 4; // Change this to sample more/less pixels
+        int sampleStep = 64; // Change this to sample more/less pixels
         int paintedPixelCount = 0;
         int totalSampledPixels = 0;
 
@@ -106,47 +112,23 @@ public class Paintable : MonoBehaviour {
         Destroy(tex);
 
         // Calculate the coverage based on the sampled pixels
-        float coverage = (float)paintedPixelCount / totalSampledPixels;
+        coverage = (float)paintedPixelCount / totalSampledPixels;
+        // return coverage >= coverageThreshold;
+        return ReturnCoverage();
+    }
+
+    public bool ReturnCoverage() 
+    {
         return coverage >= coverageThreshold;
     }
 
-    // public bool IsFullyPainted()
-    // {
-    //     paintCounter++;
-    //     if (paintCounter % checkFrequency != 0)
-    //     {
-    //         return false;
-    //     }
-
-    //     // Create a downscaled texture
-    //     int downscaleFactor = 16; // 1024/8 = 128, adjust this as needed
-    //     int downscaledSize = TEXTURE_SIZE / downscaleFactor;
-
-    //     Texture2D tex = new Texture2D(downscaledSize, downscaledSize, TextureFormat.RGBA32, false);
-    //     RenderTexture.active = maskRenderTexture;
-    //     tex.ReadPixels(new Rect(0, 0, downscaledSize, downscaledSize), 0, 0);
-    //     tex.Apply();
-    //     RenderTexture.active = null;
-
-    //     int paintedPixelCount = 0;
-    //     int totalPixels = downscaledSize * downscaledSize;
-
-    //     for (int y = 0; y < downscaledSize; y++)
-    //     {
-    //         for (int x = 0; x < downscaledSize; x++)
-    //         {
-    //             Color pixel = tex.GetPixel(x, y);
-    //             if (pixel.a > 0.1f)
-    //             {
-    //                 paintedPixelCount++;
-    //             }
-    //         }
-    //     }
-
-    //     Destroy(tex);
-
-    //     float coverage = (float)paintedPixelCount / totalPixels;
-    //     return coverage >= coverageThreshold;
-    // }
-
+    void OnTriggerEnter(Collider collider) 
+    {
+        if (collider.CompareTag("Player")) 
+        {
+            onPath = true;
+        }
+    }
 }
+
+

@@ -24136,6 +24136,7 @@ GameObject:
   - component: {fileID: 1972233513154948145}
   - component: {fileID: 4375863484574357755}
   - component: {fileID: 333108909332492919}
+  - component: {fileID: 3533176398346569451}
   m_Layer: 0
   m_Name: FireThingy
   m_TagString: Untagged
@@ -24152,7 +24153,7 @@ Transform:
   m_GameObject: {fileID: 2862825739370625326}
   m_LocalRotation: {x: 0.025474157, y: 0.0005689847, z: -0.01172264, w: 0.9996066}
   m_LocalPosition: {x: -19.467, y: -15.178, z: -77.728}
-  m_LocalScale: {x: 0.75000036, y: 0.75, z: 0.75}
+  m_LocalScale: {x: 0.7500005, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 75864678}
@@ -24223,3 +24224,26 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2534964839176971238, guid: a41e8c4a854e6ca42b16ad71666c908e, type: 3}
+--- !u!114 &3533176398346569451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2862825739370625326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c3ea44eef20b0b4396ebe666c9a6eeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coverageThreshold: 0.75
+  checkFrequency: 10
+  minRadius: 0.5
+  maxRadius: 2
+  strength: 1
+  hardness: 1
+  tolerance: 0.01
+  restrictedColors: 1
+  extendsIslandOffset: 1
+  allowedColors:
+  - {r: 1, g: 0.4509804, b: 0, a: 1}

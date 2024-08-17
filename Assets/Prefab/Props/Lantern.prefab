@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8735467755788510737}
   - component: {fileID: 5662509284712786356}
   - component: {fileID: 7598049177967844734}
+  - component: {fileID: 5221945573830476048}
   m_Layer: 0
   m_Name: Lantern
   m_TagString: Untagged
@@ -28,6 +29,7 @@ Transform:
   m_LocalRotation: {x: -0, y: 0.6991425, z: 0.71498233, w: 0}
   m_LocalPosition: {x: -27.990366, y: -15.423866, z: -94.85918}
   m_LocalScale: {x: 25, y: 25, z: 25}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -51,6 +53,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -81,3 +84,25 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5221945573830476048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8246457092267277483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c3ea44eef20b0b4396ebe666c9a6eeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coverageThreshold: 0.75
+  checkFrequency: 10
+  minRadius: 0.5
+  maxRadius: 2
+  strength: 1
+  hardness: 1
+  tolerance: 0.01
+  restrictedColors: 0
+  extendsIslandOffset: 1
+  allowedColors: []

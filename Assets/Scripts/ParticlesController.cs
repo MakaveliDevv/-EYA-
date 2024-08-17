@@ -74,8 +74,8 @@ public class ParticlesController : MonoBehaviour
     public Color paintColor;
     public float tolerance = 0.01f;
     public int raycastStep = 2; // Only raycast every nth particle
-    //public int paintLayerMask = 1 << 8; // Assuming "PaintableLayer" is on Layer 8
     public float maxRaycastDistance = 10f; // Maximum distance for raycasts
+    public Paintable p;
 
     ParticleSystem part;
     ParticleSystem.Particle[] particles;
@@ -104,6 +104,7 @@ public class ParticlesController : MonoBehaviour
             {
                 if (hit.collider.TryGetComponent<Paintable>(out var paintable))
                 {
+                    p = paintable;
                     paintPositions.Add(hit.point);
                     paintables.Add(paintable);
                 }
@@ -120,20 +121,20 @@ public class ParticlesController : MonoBehaviour
             if(paintable.restrictedColors) 
             {
                 // Check if the current paint color is allowed
-                if (paintable.allowedColors.Any(allowedColor => AreColorsSimilar(allowedColor, paintColor)))
+                if (paintable.allowedColors.Any(allowedColor => AreColorsSimilar(allowedColor, paintColor, p)))
                 {
                     PaintManager.instance.Paint(paintable, pos, radius, paintable.hardness, paintable.strength, paintColor);
 
-                    // Check if fully painted
-                    if (paintable.IsFullyPainted())
-                    {
-                        Debug.Log("The paintable object is fully painted.");
-                    }
+                    // // Check if fully painted
+                    // if (paintable.IsFullyPainted())
+                    // {
+                    //     Debug.Log("The paintable object is fully painted.");
+                    // }
                 }
-                else
-                {
-                    Debug.Log("Color not allowed");
-                }
+                // else
+                // {
+                //     Debug.Log("Color not allowed");
+                // }
             } else 
             {
                 PaintManager.instance.Paint(paintable, pos, radius, paintable.hardness, paintable.strength, paintColor);
@@ -146,11 +147,11 @@ public class ParticlesController : MonoBehaviour
     }
 
     // Method to compare colors with a tolerance
-    bool AreColorsSimilar(Color color1, Color color2)
+    bool AreColorsSimilar(Color color1, Color color2, Paintable p)
     {
-        return Mathf.Abs(color1.r - color2.r) < tolerance &&
-               Mathf.Abs(color1.g - color2.g) < tolerance &&
-               Mathf.Abs(color1.b - color2.b) < tolerance &&
-               Mathf.Abs(color1.a - color2.a) < tolerance;
+        return Mathf.Abs(color1.r - color2.r) < p.tolerance &&
+               Mathf.Abs(color1.g - color2.g) < p.tolerance &&
+               Mathf.Abs(color1.b - color2.b) < p.tolerance &&
+               Mathf.Abs(color1.a - color2.a) < p.tolerance;
     }
 }
