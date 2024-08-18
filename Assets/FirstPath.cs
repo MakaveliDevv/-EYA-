@@ -47,7 +47,7 @@ public class FirstPath : MonoBehaviour
         
         if(tree.activeInHierarchy) 
         {
-            Tree _Tree = tree.GetComponent<Tree>();
+            TreeBeh _Tree = tree.GetComponent<TreeBeh>();
 
             if(!tree_Painted) 
             {

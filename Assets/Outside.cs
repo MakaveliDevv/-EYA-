@@ -12,6 +12,11 @@ public class Outside : MonoBehaviour
     private bool doorOpening_L, doorOpening_R;
     public bool entrance_open;
 
+
+    public GameObject colorOrb;
+    public Transform spawnPos;
+    private bool orbSpawned;
+
     void Start()
     {
         // Calculate the target position by moving to the left from the current local position
@@ -67,6 +72,20 @@ public class Outside : MonoBehaviour
             }
 
             entrance_open = true;
+        }
+
+        if(entrance_open) 
+        {
+            TriggerEvent();
+        }
+    }
+
+    private void TriggerEvent()
+    {
+        if (!orbSpawned)
+        {
+            Instantiate(colorOrb, spawnPos.position, Quaternion.identity);
+            orbSpawned = true;
         }
     }
 }

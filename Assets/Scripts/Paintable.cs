@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.Burst.Intrinsics;
 using UnityEngine;
 
 public class Paintable : MonoBehaviour {
@@ -38,6 +39,8 @@ public class Paintable : MonoBehaviour {
     public RenderTexture getExtend() => extendIslandsRenderTexture;
     public RenderTexture getSupport() => supportTexture;
     public Renderer getRenderer() => rend;
+
+    public event System.Action<Paintable> OnFullyPainted;
 
     void Start() {
         maskRenderTexture = new RenderTexture(TEXTURE_SIZE, TEXTURE_SIZE, 0)
@@ -112,20 +115,15 @@ public class Paintable : MonoBehaviour {
 
         // Calculate the coverage based on the sampled pixels
         coverage = (float)paintedPixelCount / totalSampledPixels;
+        if(coverage >= coverageThreshold && !painted) 
+        {
+            painted = true;
+            Debug.Log("Object fully painted: " + gameObject.name);
+            OnFullyPainted?.Invoke(this);
+        }
         // return coverage >= coverageThreshold;
-        return ReturnCoverage();
+        return painted;
     }
-
-    // void Update() 
-    // {
-    //     if(lantern) 
-    //     {
-    //         if(ReturnCoverage()) 
-    //         {
-    //             painted = true;
-    //         }
-    //     }
-    // }
 
     public bool ReturnCoverage() 
     {
