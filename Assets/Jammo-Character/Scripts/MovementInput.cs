@@ -8,6 +8,7 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class MovementInput : MonoBehaviour {
 
+	public Transform orbInventory;
     public float Velocity;
     [Space]
 
@@ -132,6 +133,18 @@ public class MovementInput : MonoBehaviour {
 				anim.SetFloat("X", InputX, StopAnimTime/ 3, Time.deltaTime);
 				anim.SetFloat("Y", InputZ, StopAnimTime/ 3, Time.deltaTime);
 			}
+		}
+	}
+
+	void OnTriggerEnter(Collider other) 
+	{
+		if(other.CompareTag("Orb"))
+		{
+			other.transform.SetParent(orbInventory);
+		}
+		else 
+		{
+			return;
 		}
 	}
 }

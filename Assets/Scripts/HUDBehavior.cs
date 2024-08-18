@@ -27,9 +27,9 @@ public class HUDBehavior : MonoBehaviour
 
     void Update()
     {
-        if(locked && GameManager.GetInstance().colors.Count > 0)
+        if(locked && GameManager.GetInstance().colorOrbs.Count > 0)
         {
-            foreach (var color in GameManager.GetInstance().colors)
+            foreach (var color in GameManager.GetInstance().colorOrbs)
             {
                 Collectable collectable = color.GetComponent<Collectable>();
                 if(collectable.Name == ColorName)

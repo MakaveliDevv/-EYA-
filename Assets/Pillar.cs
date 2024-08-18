@@ -7,27 +7,27 @@ public class Pillar : MonoBehaviour
 {
     public VolumetricLineBehavior volumetricLineBehavior;
     private Paintable p;
-    private bool beamsWereInitiallyActive = false;
+    // private bool beamsWereInitiallyActive = false;
 
 
 
     // Variables for interpolation
-    private bool isInterpolating = false;
-    private Vector3 startPos;
-    private Vector3 targetEndPos;
-    private float interpolationDuration = 2.0f; // Duration in seconds
-    private float interpolationTime = 0.0f;
+    // private bool isInterpolating = false;
+    // private Vector3 startPos;
+    // private Vector3 targetEndPos;
+    // private float interpolationDuration = 2.0f; // Duration in seconds
+    // private float interpolationTime = 0.0f;
 
     void Start()
     {
         p = GetComponent<Paintable>();
 
         // Store the initial start position and end position
-        if (volumetricLineBehavior != null)
-        {
-            startPos = volumetricLineBehavior.StartPos;
-            targetEndPos = volumetricLineBehavior.EndPos;
-        }
+        // if (volumetricLineBehavior != null)
+        // {
+        //     startPos = volumetricLineBehavior.StartPos;
+        //     targetEndPos = volumetricLineBehavior.EndPos;
+        // }
     }
 
     void Update()
@@ -36,7 +36,7 @@ public class Pillar : MonoBehaviour
         {
             // Debug.Log("Pillar Painted");
             volumetricLineBehavior.gameObject.SetActive(true);
-            beamsWereInitiallyActive = true;
+            // beamsWereInitiallyActive = true;
             // Start the interpolation
             // isInterpolating = true;
             // interpolationTime = 0.0f;

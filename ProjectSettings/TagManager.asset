@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - PlayerEyes
+  - Orb
   layers:
   - Default
   - TransparentFX

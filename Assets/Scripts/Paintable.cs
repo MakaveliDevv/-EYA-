@@ -15,8 +15,8 @@ public class Paintable : MonoBehaviour {
     public float hardness = 1;
     public float tolerance = 0.01f;
     public bool restrictedColors;
-    public bool onPath;
-    public bool yellow_lantern, red_lantern, isLantern;
+    public bool onRedPath;
+    public bool tree, redGrass, isLantern;
 
 
     public float extendsIslandOffset = 1;
@@ -84,7 +84,7 @@ public class Paintable : MonoBehaviour {
         }
 
         // Create a temporary Texture2D to read the RenderTexture
-        Texture2D tex = new Texture2D(TEXTURE_SIZE, TEXTURE_SIZE, TextureFormat.RGBA32, false);
+        Texture2D tex = new(TEXTURE_SIZE, TEXTURE_SIZE, TextureFormat.RGBA32, false);
         RenderTexture.active = maskRenderTexture;
         tex.ReadPixels(new Rect(0, 0, TEXTURE_SIZE, TEXTURE_SIZE), 0, 0);
         tex.Apply();
@@ -122,12 +122,19 @@ public class Paintable : MonoBehaviour {
         return coverage >= coverageThreshold;
     }
 
-    void OnTriggerEnter(Collider collider) 
+    void OnTriggerStay(Collider collider) 
     {
-        if (collider.CompareTag("Player")) 
+        if(redGrass) 
         {
-            onPath = true;
+            if(collider.CompareTag("Player")) 
+            {
+                onRedPath = true;
+            } 
         }
+        // if (collider.CompareTag("Player")) 
+        // {
+        //     onRedPath = true;
+        // }
     }
 }
 

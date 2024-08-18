@@ -6,47 +6,32 @@ public class FirstPath : MonoBehaviour
     public List<Paintable> paintables = new();
     public bool onPath;
     int requiredFullyPainted;
-    int fullyPaintedCount = 0;
+    int fullyPaintedCount_RedGrass = 0;
     public GameObject tree;
     public GameObject colorOrb;
     public Transform spawnPos;
+    private int fullyPaintedCount_TreePart = 0;
 
-    // Variables for tree interpolation
-    private bool isTreeMoving = false;
-    private Vector3 treeStartPos;
-    private Vector3 treeTargetPos;
-    private float treeMoveDuration = 3.0f; // Duration in seconds
-    private float treeMoveTime = 0.0f;
 
     void Start()
     {
-        // Ensure the onPath is initially false
         requiredFullyPainted = Mathf.CeilToInt(paintables.Count * 0.75f);
-
-        // // Initialize tree positions
-        // if (tree != null)
-        // {
-        //     treeStartPos = tree.transform.position;
-        //     treeTargetPos = treeStartPos + new Vector3(0f, 11.5f, 0f); // Move the tree upwards by 10 units
-        // }
     }
 
     void Update()
     {
-        foreach (var _paintable in paintables)
+        foreach (var redGrass in paintables)
         {
-            if(_paintable.onPath) 
+            if(redGrass.redGrass && redGrass.onRedPath) 
             {
-                if (_paintable.IsFullyPainted())
+                if (redGrass.IsFullyPainted())
                 {
-                    fullyPaintedCount++;
+                    fullyPaintedCount_RedGrass++;
                 }
                 
-                // If the required number is reached, trigger an event and break out of the loop
-                if (fullyPaintedCount >= requiredFullyPainted)
+                if (fullyPaintedCount_RedGrass >= requiredFullyPainted)
                 {
-                    // Debug.Log("80% of Paintables are fully painted!");
-                    // Trigger your desired event here
+                    Debug.Log("RedPath Fully Painted");
                     TriggerEvent();
                     break;
                 }
@@ -56,35 +41,33 @@ public class FirstPath : MonoBehaviour
         
         if(tree.activeInHierarchy) 
         {
-            Instantiate(colorOrb, spawnPos.transform.position, Quaternion.identity);
+            Tree _Tree = tree.GetComponent<Tree>();
+
+            foreach (Paintable part in _Tree.treeParts)
+            {
+                if(part.tree) 
+                {
+                    if (part.IsFullyPainted())
+                    {
+                        fullyPaintedCount_TreePart++;
+                        Debug.Log("Tree");
+                    }
+                    
+                    if (fullyPaintedCount_TreePart >= requiredFullyPainted)
+                    {
+                        Instantiate(colorOrb, spawnPos.transform.position, Quaternion.identity);
+                        Debug.Log("Orb spawned");
+ 
+                        break;
+                    }
+                }
+            }
         }
-
-        // // Handle tree interpolation
-        // if (isTreeMoving)
-        // {
-        //     treeMoveTime += Time.deltaTime;
-        //     float t = treeMoveTime / treeMoveDuration;
-
-        //     if (tree != null)
-        //     {
-        //         tree.transform.position = Vector3.Lerp(treeStartPos, treeTargetPos, t);
-        //     }
-
-        //     if (t >= 1.0f)
-        //     {
-        //         isTreeMoving = false; // Stop moving once interpolation is complete
-        //     }
-        // }
     }
 
     void TriggerEvent()
     {
-        // Your logic for what should happen when 80% of paintables are fully painted
-        Debug.Log("Event Triggered: 80% of Paintables are fully painted.");
         tree.SetActive(true);
-
-        // Start the tree movement
-        // isTreeMoving = true;
-        // treeMoveTime = 0.0f;
     }
+    
 }

@@ -10,13 +10,14 @@ public class Collectable : MonoBehaviour
         gameObject.name = Name;
     }
  
-    void OnTriggerEnter(Collider c)
+    void OnTriggerEnter(Collider other)
     {
-        if(c.CompareTag("Player"))
+        if(other.CompareTag("Player"))
         {
-            if(!GameManager.GetInstance().colors.Contains(gameObject))
+            if(!GameManager.GetInstance().colorOrbs.Contains(gameObject))
             {
-                GameManager.GetInstance().colors.Add(gameObject);
+                GameManager.GetInstance().colorOrbs.Add(gameObject);
+                gameObject.SetActive(false);
             }
         }
     }

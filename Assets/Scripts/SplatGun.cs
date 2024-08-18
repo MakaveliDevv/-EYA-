@@ -29,7 +29,8 @@ public class SplatGun : MonoBehaviour
             Material p_Material = p_Renderer.sharedMaterial;
             if(p_Material.HasProperty("_BaseColor"))
             {
-                p_Material.SetColor("_BaseColor", new Color(241f / 255f, 71f / 255f, 121f / 255f));
+                p_Material.SetColor("_BaseColor", new Color(50f / 255f, 45f / 255f, 43f / 255f)); // #322D2B
+                // p_Material.SetColor("_BaseColor", new Color(241f / 255f, 71f / 255f, 121f / 255f)); // 322D2B 
             }
         }
     }

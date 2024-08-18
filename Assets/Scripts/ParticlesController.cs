@@ -71,7 +71,7 @@ using UnityEngine;
 
 public class ParticlesController : MonoBehaviour
 {
-    public Color paintColor;
+    public Color paintColor; //F14779 (initial color)
     public float tolerance = 0.01f;
     public int raycastStep = 2; // Only raycast every nth particle
     public float maxRaycastDistance = 10f; // Maximum distance for raycasts
@@ -88,6 +88,9 @@ public class ParticlesController : MonoBehaviour
         particles = new ParticleSystem.Particle[part.main.maxParticles];
         paintPositions = new List<Vector3>();
         paintables = new List<Paintable>();
+
+        paintColor = new Color(50f / 255f, 45f / 255f, 43f / 255f); // #322D2B
+
     }
 
     void Update()

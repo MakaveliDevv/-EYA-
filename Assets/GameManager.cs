@@ -7,7 +7,10 @@ public class GameManager : MonoBehaviour
     private static GameManager i;
 
     // Reference the color inv
-    public List<GameObject> colors = new List<GameObject>(); 
+    public List<GameObject> colorOrbs = new(); 
+    public List<GameObject> startingColorOrbs = new();
+    public Transform spawnPointStartingOrbs;
+    public Transform playerInv;
 
     void Awake() 
     {
@@ -18,6 +21,17 @@ public class GameManager : MonoBehaviour
         else 
         {
             Destroy(gameObject);
+        }
+    }
+
+    void Start() 
+    {
+        foreach (var orb in startingColorOrbs)
+        {
+            GameObject color = Instantiate(orb, spawnPointStartingOrbs.position, Quaternion.identity);
+            colorOrbs.Add(color);
+            color.transform.SetParent(playerInv);
+            color.SetActive(false);
         }
     }
 
