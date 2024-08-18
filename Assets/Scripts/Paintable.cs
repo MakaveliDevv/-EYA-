@@ -15,8 +15,8 @@ public class Paintable : MonoBehaviour {
     public float hardness = 1;
     public float tolerance = 0.01f;
     public bool restrictedColors;
-    public bool onRedPath;
-    public bool tree, redGrass, isLantern;
+    public bool onRedPath, onYellowPath;
+    public bool tree, redGrass, lantern, yellowGrass, pillar;
 
 
     public float extendsIslandOffset = 1;
@@ -131,10 +131,14 @@ public class Paintable : MonoBehaviour {
                 onRedPath = true;
             } 
         }
-        // if (collider.CompareTag("Player")) 
-        // {
-        //     onRedPath = true;
-        // }
+
+        if(yellowGrass) 
+        {
+            if(collider.CompareTag("Player")) 
+            {
+                onYellowPath = true;
+            }
+        }
     }
 }
 

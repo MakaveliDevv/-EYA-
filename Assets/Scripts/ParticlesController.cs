@@ -126,7 +126,10 @@ public class ParticlesController : MonoBehaviour
                 // Check if the current paint color is allowed
                 if (paintable.allowedColors.Any(allowedColor => AreColorsSimilar(allowedColor, paintColor, p)))
                 {
-                    PaintManager.instance.Paint(paintable, pos, radius, paintable.hardness, paintable.strength, paintColor);
+                    if(!paintable.pillar) 
+                    {
+                        PaintManager.instance.Paint(paintable, pos, radius, paintable.hardness, paintable.strength, paintColor);
+                    }
 
                     // // Check if fully painted
                     // if (paintable.IsFullyPainted())
@@ -140,7 +143,10 @@ public class ParticlesController : MonoBehaviour
                 // }
             } else 
             {
-                PaintManager.instance.Paint(paintable, pos, radius, paintable.hardness, paintable.strength, paintColor);
+                if(!paintable.pillar) 
+                {
+                    PaintManager.instance.Paint(paintable, pos, radius, paintable.hardness, paintable.strength, paintColor);
+                }
             }
         }
 

@@ -17,7 +17,7 @@ public class LanternArea : MonoBehaviour
 
         foreach (var lantern in paintables)
         {
-            if (lantern.isLantern) 
+            if (lantern.lantern) 
             {
                 if (!lantern.IsFullyPainted()) 
                 {

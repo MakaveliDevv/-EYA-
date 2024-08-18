@@ -11,57 +11,75 @@ public class FirstPath : MonoBehaviour
     public GameObject colorOrb;
     public Transform spawnPos;
     private int fullyPaintedCount_TreePart = 0;
+    private bool orbSpawned; 
+    public bool redPath_Painted, tree_Painted;
 
 
     void Start()
     {
-        requiredFullyPainted = Mathf.CeilToInt(paintables.Count * 0.75f);
+        requiredFullyPainted = Mathf.CeilToInt(paintables.Count * 0.85f);
     }
 
     void Update()
     {
-        foreach (var redGrass in paintables)
+        if(!redPath_Painted) 
         {
-            if(redGrass.redGrass && redGrass.onRedPath) 
+            foreach (var redGrass in paintables)
             {
-                if (redGrass.IsFullyPainted())
+                if(redGrass.redGrass && redGrass.onRedPath) 
                 {
-                    fullyPaintedCount_RedGrass++;
+                    if (redGrass.IsFullyPainted())
+                    {
+                        fullyPaintedCount_RedGrass++;
+                    }
+                    
+                    if (fullyPaintedCount_RedGrass >= requiredFullyPainted)
+                    {
+                        redPath_Painted = true;
+                        Debug.Log("RedPath Fully Painted");
+                        TriggerEvent();
+                        break;
+                    }
                 }
-                
-                if (fullyPaintedCount_RedGrass >= requiredFullyPainted)
-                {
-                    Debug.Log("RedPath Fully Painted");
-                    TriggerEvent();
-                    break;
-                }
-            }
 
+            }
         }
         
         if(tree.activeInHierarchy) 
         {
             Tree _Tree = tree.GetComponent<Tree>();
 
-            foreach (Paintable part in _Tree.treeParts)
+            if(!tree_Painted) 
             {
-                if(part.tree) 
+                foreach (Paintable part in _Tree.treeParts)
                 {
-                    if (part.IsFullyPainted())
+                    if(part.tree) 
                     {
-                        fullyPaintedCount_TreePart++;
-                        Debug.Log("Tree");
-                    }
-                    
-                    if (fullyPaintedCount_TreePart >= requiredFullyPainted)
-                    {
-                        Instantiate(colorOrb, spawnPos.transform.position, Quaternion.identity);
-                        Debug.Log("Orb spawned");
- 
-                        break;
+                        if (part.IsFullyPainted())
+                        {
+                            fullyPaintedCount_TreePart++;
+                        }
+                        
+                        if (fullyPaintedCount_TreePart >= requiredFullyPainted)
+                        {
+                            tree_Painted = true;
+                            SpawnOrb();
+
+                            break;
+                        }
                     }
                 }
             }
+        }
+    }
+
+    void SpawnOrb() 
+    {
+        if(!orbSpawned) 
+        {
+            Instantiate(colorOrb, spawnPos.transform.position, Quaternion.identity);
+            Debug.Log("Yellow Orb Spawned");
+            orbSpawned = true;
         }
     }
 

@@ -22,6 +22,7 @@ public class Cloud : MonoBehaviour
     {
         if(p.IsFullyPainted()) 
         {
+            Debug.Log("Cloud is fully painted");
             particle.SetActive(true);
             p_system.Play();
 
