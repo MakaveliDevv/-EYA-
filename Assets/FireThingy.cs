@@ -15,7 +15,7 @@ public class FireThingy : MonoBehaviour
         particle = vfx.GetComponent<ParticleSystem>();
         p = GetComponent<Paintable>();
 
-        particle.Stop();
+        //particle.Stop();
     }
 
     void Update() 
@@ -23,7 +23,7 @@ public class FireThingy : MonoBehaviour
         if (p.IsFullyPainted())
         {
             vfx.SetActive(true);
-            particle.Play();
+            //particle.Play();
             active = true;
         }        
     }

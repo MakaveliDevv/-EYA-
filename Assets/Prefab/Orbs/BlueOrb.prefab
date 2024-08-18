@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Blue
-  color: {r: 0.10980392, g: 0.18039216, b: 0.7176471, a: 1}
+  color: {r: 0.08027759, g: 0.28554136, b: 0.7735849, a: 1}
 --- !u!54 &5580568520741758770
 Rigidbody:
   m_ObjectHideFlags: 0

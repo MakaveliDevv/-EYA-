@@ -9,6 +9,7 @@ public class Cloud : MonoBehaviour
     public ParticleSystem p_system;
     public Paintable p;
     public bool pondFilled = false;
+    private bool orbSpawned; 
 
     void Awake()
     {
@@ -32,7 +33,7 @@ public class Cloud : MonoBehaviour
         if(pondFilled) 
         {
             water.SetActive(true);
-            Instantiate(colorOrb, spawnPos.transform.position, Quaternion.identity);
+            SpawnOrb();
         }  
     }
 
@@ -40,5 +41,14 @@ public class Cloud : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         pondFilled = true;
+    }
+
+    private void SpawnOrb() 
+    {
+        if(!orbSpawned) 
+        {
+            Instantiate(colorOrb, spawnPos.transform.position, Quaternion.identity);
+            orbSpawned = false;
+        }
     }
 }

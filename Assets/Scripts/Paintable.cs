@@ -17,6 +17,7 @@ public class Paintable : MonoBehaviour {
     public bool restrictedColors;
     public bool onRedPath, onYellowPath;
     public bool tree, redGrass, lantern, yellowGrass, pillar;
+    public bool painted;
 
 
     public float extendsIslandOffset = 1;
@@ -63,8 +64,6 @@ public class Paintable : MonoBehaviour {
         rend.material.SetTexture(maskTextureID, extendIslandsRenderTexture);
 
         PaintManager.instance.InitTextures(this);
-
-        // GetComponent<MeshCollider>().isTrigger = true;
     }
 
     void OnDisable(){
@@ -91,7 +90,7 @@ public class Paintable : MonoBehaviour {
         RenderTexture.active = null;
 
         // Sample every nth pixel to reduce processing load
-        int sampleStep = 64; // Change this to sample more/less pixels
+        int sampleStep = 4; // Change this to sample more/less pixels
         int paintedPixelCount = 0;
         int totalSampledPixels = 0;
 
@@ -116,6 +115,17 @@ public class Paintable : MonoBehaviour {
         // return coverage >= coverageThreshold;
         return ReturnCoverage();
     }
+
+    // void Update() 
+    // {
+    //     if(lantern) 
+    //     {
+    //         if(ReturnCoverage()) 
+    //         {
+    //             painted = true;
+    //         }
+    //     }
+    // }
 
     public bool ReturnCoverage() 
     {

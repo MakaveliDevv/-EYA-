@@ -11,6 +11,8 @@ public class Inside : MonoBehaviour
     int fullyPaintedCount = 0;
     public GameObject colorOrb;
     public Transform spawnPos;
+    private bool orbSpawned; 
+
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +33,7 @@ public class Inside : MonoBehaviour
             // If the required number is reached, trigger an event and break out of the loop
             if (fullyPaintedCount >= requiredFullyPainted)
             {
-                // Debug.Log("80% of Paintables are fully painted!");
+                Debug.Log("80% of Paintables are fully painted!");
                 // Trigger your desired event here
                 TriggerEvent();
                 break;
@@ -41,7 +43,10 @@ public class Inside : MonoBehaviour
 
     private void TriggerEvent()
     {
-        Instantiate(colorOrb, spawnPos.position, Quaternion.identity);
-        throw new NotImplementedException();
+        if(!orbSpawned) 
+        {
+            Instantiate(colorOrb, spawnPos.position, Quaternion.identity);
+            orbSpawned = true;
+        }
     }
 }
