@@ -21,7 +21,7 @@ public class FireThingy : MonoBehaviour
     {
         if (p.IsFullyPainted())
         {
-            vfx.SetActive(true);
+            // vfx.SetActive(true);
             active = true;
         }        
     }
